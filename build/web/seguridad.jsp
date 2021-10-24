@@ -34,6 +34,29 @@
         </c:when>    
     </c:choose>
 </c:if>            
+
+<c:if test="${empty sessionScope.nivel or sessionScope.nivel ==-1}">
+    <c:choose>
+        <c:when test="${pageId eq 'Insertar'}">
+             <c:redirect url="error.jsp">
+                <c:param name="tipo" value="contexto"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:when>     
+        <c:when test="${pageId eq 'Actualizar'}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="contexto"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:when>       
+        <c:when test="${pageId eq 'Eliminar'}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="contexto"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:when>   
+    </c:choose>
+</c:if>
             
 
 
