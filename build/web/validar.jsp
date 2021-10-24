@@ -3,7 +3,7 @@
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
-<%@ include file="fuentedatos.jsp" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,7 @@
         <title>Validando Inicio</title>
     </head>
     <body>
+        <%@ include file="fuentedatos.jsp" %>
         <h1>Verificación de Usuarios</h1>
         <c:if test="${empty param.usuario or empty param.contra}">
             <c:redirect url="frmlogin.jsp">

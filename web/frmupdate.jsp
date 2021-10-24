@@ -6,8 +6,10 @@
 <%@ include file="fuentedatos.jsp" %>
 
 <c:set var="pageId" value="Actualizar" />
+<c:set var="standalone" value="not" />
 
 <%@ include file="seguridad.jsp" %>
+<%@ include file="fuentedatos.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@
     <body>
         <h1>Actualizar libro</h1>
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT * from libro where id=?;
+            SELECT * from libro where id = TO_NUMBER(?, '999');
             <sql:param value="${param.id}"/>
         </sql:query>
         <%! String str = null; %>
@@ -63,7 +65,5 @@
             </c:forEach>
         </table>
         </form>
-        
-       
     </body>
 </html>

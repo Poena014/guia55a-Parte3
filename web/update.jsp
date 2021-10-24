@@ -3,9 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 <%@ include file="fuentedatos.jsp" %>
+
 <c:set var="pageId" value="Actualizar" />
+<c:set var="standalone" value="not" />
 
 <%@ include file="seguridad.jsp" %>
+<%@ include file="fuentedatos.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +23,7 @@
         <p>Informacion editada correctamente <a href="index.jsp">Regresar</a> </p>
         
         <sql:update dataSource = "${fuenteDatos}" var = "count">
-            UPDATE libro SET isbn=?,titulo=?,autor=?,editorial=?   WHERE  id=?
+            UPDATE libro SET isbn=?,titulo=?,autor=?,editorial=?   WHERE  id=TO_NUMBER(?, '999');
             <sql:param value="${param.isbn}"/>
             <sql:param value = "${param.titulo}" />
             <sql:param value="${param.autor}"/>

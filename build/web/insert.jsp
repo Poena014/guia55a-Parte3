@@ -5,6 +5,7 @@
 <%@ include file="fuentedatos.jsp" %>
 
 <c:set var="pageId" value="Insertar" />
+<c:set var="standalone" value="not" />
 
 <%@ include file="seguridad.jsp" %>
 
@@ -19,11 +20,11 @@
         <h1>Operacion Exitosa!!!</h1>
         <p style="text-align: center">Informacion agregada correctamente <a href="index.jsp">Regresar</a> </p>
         <sql:update dataSource = "${fuenteDatos}" var = "count">
-            INSERT INTO libro (isbn,titulo,autor,editorial) VALUES (?,?,?,?);
-            <sql:param value="${param.isbn}"/>
-            <sql:param value = "${param.titulo}" />
-            <sql:param value="${param.autor}"/>
-            <sql:param value="${param.editorial}"/>
+                INSERT INTO libro (isbn,titulo,autor,editorial) VALUES (?,?,?,?);
+                <sql:param value="${param.isbn}"/>
+                <sql:param value = "${param.titulo}" />
+                <sql:param value="${param.autor}"/>
+                <sql:param value="${param.editorial}"/>
         </sql:update>
         
     </body>

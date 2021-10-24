@@ -6,13 +6,14 @@
 <c:set var="standalone" value="not" />
 
 <%@ include file="seguridad.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Biblioteca</title>
 
-        <c:if test="${sessionScope.nivel eq 1}">
+        <c:if test="${sessionScope.nivel == 1}">
             <script>
                 function agregar()
                 {
@@ -32,7 +33,7 @@
             </script>
         </c:if>
 
-        <c:if test="${sessionScope.nivel eq 2}">
+        <c:if test="${sessionScope.nivel == 2}">
             <script>
                 function actualizar(id)
                 {
@@ -41,7 +42,7 @@
                 function eliminar(id, isbn, titulo, autor, editorial)
                 {
                     alert("Registro con el id:" + id + " se ha eliminado");
-                    location.href = "delete.jsp?isbn=" + isbn + "&titulo=" + titulo + "&autor=" + autor + "&editorial=" + editorial + "&id=" + id;
+                    location.href = "delete.jsp?id=" + id;
                 }
             </script>
         </c:if>
@@ -103,11 +104,9 @@
 
             <br>
             <br>
+            <%@ include file="fuentedatos.jsp" %>
             <h2 style="font-style: italic">Listado de  Libros</h2>
-            <sql:setDataSource var="fuente1" driver="org.mariadb.jdbc.Driver"
-                               url="jdbc:mariadb://localhost:3308/biblioteca"
-                               user="root"  password = ""/>
-            <sql:query dataSource = "${fuente1}" var = "result">
+            <sql:query dataSource = "${fuenteDatos}" var = "result">
                 SELECT * from libro;
             </sql:query>
             <table>

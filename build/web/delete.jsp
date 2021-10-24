@@ -5,8 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 
 <c:set var="pageId" value="Eliminar" />
+<c:set var="standalone" value="not" />
 
 <%@ include file="seguridad.jsp" %>
+<%@ include file="fuentedatos.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,16 +18,10 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>ELIMINAR UN REGISTRO DE LA TABLA</h1>
-        <sql:setDataSource var = "fuenteDatos" driver = "org.mariadb.jdbc.Driver"
-                           url = "jdbc:mariadb://localhost:3308/biblioteca"
-                           user = "root"  password = ""/>
-
-        <c:set var = "Id" value = "${param.id}"/>
-        
+        <h1>ELIMINAR UN REGISTRO DE LA TABLA</h1>        
         <sql:update dataSource = "${fuenteDatos}" var = "count">
-            DELETE FROM libro WHERE Id = ?
-            <sql:param value = "${Id}" />
+            DELETE FROM libro WHERE id=?
+            <sql:param value = "${id}" />
         </sql:update>
 
         <sql:query dataSource = "${fuenteDatos}" var = "result">
